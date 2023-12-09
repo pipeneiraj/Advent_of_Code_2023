@@ -1,5 +1,8 @@
 # abrir el archivo
-with open("day4\input.txt") as file:
+from typing import Any
+
+
+with open("day4\\input.txt") as file:
     content = file.read()
     lines = content.splitlines()  # guardar las filas en la lista
 
@@ -11,7 +14,7 @@ with open("day4\input.txt") as file:
 #          'Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11']
 
 
-def to_dict(line):
+def to_dict(line: str) -> dict[str, Any]:
     card, numbers = line.split(":")
     _, card_number = card.split()
     winners, card_numbers = numbers.split("|")
@@ -23,14 +26,14 @@ def to_dict(line):
     }
 
 
-def count_wins(dict):
+def count_wins(card: dict[str, Any]) -> int:
     count = 0
-    for win_number in dict["winners"]:
-        count += dict["card_numbers"].count(win_number)
+    for win_number in card["winners"]:
+        count += card["card_numbers"].count(win_number)
     return count
 
 
-def copies(cards):
+def copies(cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for i, card in enumerate(cards):
         matches = count_wins(card)
         if count_wins(card) > 0:
@@ -41,7 +44,7 @@ def copies(cards):
     return cards
 
 
-def test(line):
+def test(line: str) -> None:
     return print(count_wins(to_dict(line)))
 
 
