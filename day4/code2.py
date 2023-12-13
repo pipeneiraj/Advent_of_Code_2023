@@ -2,7 +2,7 @@
 from typing import Any
 
 
-with open("day4\\input.txt") as file:
+with open("inputs\\input4.txt") as file:
     content = file.read()
     lines = content.splitlines()  # guardar las filas en la lista
 

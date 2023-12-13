@@ -2,7 +2,7 @@
 lines = []
 
 # abrir el archivo
-with open("day1\input.txt") as file:
+with open("inputs\\input1.txt") as file:
     for row in file:
         lines.append(row.rstrip())  # guardar las filas en la lista
 

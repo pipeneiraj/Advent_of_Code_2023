@@ -1,5 +1,5 @@
 # abrir el archivo
-with open("day2\input.txt") as file:
+with open("inputs\\input2.txt") as file:
     content = file.read()
     lines = content.splitlines()  # guardar las filas en la lista
 

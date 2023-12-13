@@ -2,7 +2,7 @@ import time
 from typing import Any, Generator
 
 
-with open("day5\\input.txt") as file:
+with open("inputs\\input5.txt") as file:
     content = file.read()
     lines = content.splitlines()  # guardar las filas en la lista
 
