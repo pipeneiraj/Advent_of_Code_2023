@@ -1,21 +1,27 @@
+import time
+
+
 file = open("inputs\\input6.txt").read().split()
 
-time = [int(i) for i in file[1 : int(len(file) / 2)]]
+time_ = [int(i) for i in file[1 : int(len(file) / 2)]]
 distance = [int(i) for i in file[int(len(file) / 2) + 1 : len(file)]]
 
-races = [[time[i], distance[i]] for i in range(0, len(time))]
+races = [[time_[i], distance[i]] for i in range(0, len(time_))]
 
 
 def record(races: list[list[int]]) -> int:
     prod = 1
-    for time, distance in races:
+    for time_, distance in races:
         sum = 0
-        for i in range(1, time + 1):
-            if (time - i) * i > distance:
-                sum += 1
-        prod *= sum
+        while (time_ - sum) * sum < distance:
+            sum += 1
+        prod *= time_ - sum * 2 + 1
     return prod
 
 
 if __name__ == "__main__":
+    start_time = time.time()
+
     print(record(races))
+
+    print("--- %s seconds ---" % (time.time() - start_time))
