@@ -47,8 +47,6 @@ def steps(
         )
 
 
-# def()
-
 if __name__ == "__main__":
     nodes = to_dict(nodes_list)
 
