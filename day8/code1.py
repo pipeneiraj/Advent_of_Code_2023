@@ -28,20 +28,17 @@ def to_dict(nodes_list: list) -> dict:
     return rules
 
 
-def steps(
-    side: str, nodes: dict, actual_node: str, search_node: str, index: int
-) -> int:
+def steps(side: str, actual_node: str, search_node: str, index: int) -> int:
     if actual_node == search_node:
         return 0
     else:
-        if index == len(instructions) - 1:
-            index = 0
-        else:
-            index += 1
+        index = (index + 1) % len(instructions)
+
+        next_node = nodes[actual_node][side]
+
         return 1 + steps(
             instructions[index],
-            nodes,
-            nodes[actual_node][side],
+            next_node,
             search_node,
             index,
         )
@@ -54,4 +51,4 @@ if __name__ == "__main__":
     searched = "ZZZ"
 
     sys.setrecursionlimit(20000)
-    print(steps(instructions[0], nodes, initial, searched, 0))
+    print(steps(instructions[0], initial, searched, 0))

@@ -1,24 +1,15 @@
+import math
 import sys
 import time
 
 
-file = open("inputs\\test8-3.txt").read().splitlines()
+file = open("inputs\\input8.txt").read().splitlines()
 
 instructions = file[0]
 
 nodes_list = [
     file[i].replace("(", "").replace(")", "").split("=") for i in range(2, len(file))
 ]
-
-# nodes = {
-#     key.replace(" ", ""): {
-#         {"L": left, "R": right} for left, right in value.replace(",", "").split()
-#     }
-#     for key, value in [
-#         file[i].replace("(", "").replace(")", "").split("=")
-#         for i in range(2, len(file))
-#     ]
-# }
 
 
 def to_dict(nodes_list: list) -> dict:
@@ -29,41 +20,31 @@ def to_dict(nodes_list: list) -> dict:
     return rules
 
 
-def steps(
-    side: str,
-    nodes: dict,
-    actual_nodes: list,
-    searched_node: str,
-    index: int,
-    steps_count: list,
-):
-    if all(node[2] == searched_node for node in actual_nodes):
-        steps_count.append(0)
-        return
+def steps(side: str, actual_node: str, searched_node: str, index: int) -> int:
+    if actual_node[2] == searched_node:
+        return 0
     else:
         index = (index + 1) % len(instructions)
 
-        next_nodes = [nodes[actual_node][side] for actual_node in actual_nodes]
+        next_node = nodes[actual_node][side]
 
-        steps_count.append(1)
-
-        return steps(
-            instructions[index], nodes, next_nodes, searched_node, index, steps_count
-        )
+        return 1 + steps(instructions[index], next_node, searched_node, index)
 
 
 if __name__ == "__main__":
+    start_time = time.time()
     nodes = to_dict(nodes_list)
 
     initial_nodes = [key for key in nodes.keys() if key[2] == "A"]
-
-    # initial_nodes = ["MLA"]  # 'MLA', 'BQA', 'MJA', 'AAA', 'TGA', 'BJA'
 
     searched = "Z"
     steps_count = []
 
     sys.setrecursionlimit(100000)
-    start_time = time.time()
-    steps(instructions[0], nodes, initial_nodes, searched, 0, steps_count)
-    print(sum(steps_count))
+
+    for initial_node in initial_nodes:
+        steps_count.append(steps(instructions[0], initial_node, searched, 0))
+
+    print(math.lcm(*steps_count))
+
     print("--- %s seconds ---" % (time.time() - start_time))
