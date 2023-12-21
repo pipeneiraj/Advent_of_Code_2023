@@ -1,7 +1,8 @@
 import time
 
+with open("inputs\\input6.txt") as f:
+    file = f.read().replace(" ", "").split()
 
-file = open("inputs\\input6.txt").read().replace(" ", "").split()
 
 time_ = int(file[0].split(":")[1])
 

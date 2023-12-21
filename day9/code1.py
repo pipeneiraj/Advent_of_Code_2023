@@ -1,4 +1,6 @@
-input = open("inputs\\input9.txt").read().splitlines()
+with open("inputs\\input9.txt") as f:
+    input = f.read().splitlines()
+
 
 lines = [[int(x) for x in i.split()] for i in input]
 

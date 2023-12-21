@@ -2,8 +2,9 @@ import math
 import sys
 import time
 
+with open("inputs\\input8.txt") as f:
+    file = f.read().splitlines()
 
-file = open("inputs\\input8.txt").read().splitlines()
 
 instructions = file[0]
 

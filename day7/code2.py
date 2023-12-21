@@ -1,7 +1,9 @@
 from typing import Any
 
+with open("inputs\\input7.txt") as f:
+    file = f.read().splitlines()
 
-file = open("inputs\\input7.txt").read().splitlines()
+
 lines = [i.split(" ") for i in file]
 
 hands = [{"id": i, "cards": hand[0], "bid": hand[1]} for i, hand in enumerate(lines)]

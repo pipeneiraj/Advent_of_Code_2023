@@ -1,7 +1,7 @@
 import time
 
-
-file = open("inputs\\input6.txt").read().split()
+with open("inputs\\input6.txt") as f:
+    file = f.read().split()
 
 time_ = [int(i) for i in file[1 : int(len(file) / 2)]]
 distance = [int(i) for i in file[int(len(file) / 2) + 1 : len(file)]]
