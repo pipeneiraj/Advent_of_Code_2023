@@ -7,15 +7,12 @@ def next_element(line: list) -> int:
     if all(num == 0 for num in line):
         return line[-1]
     else:
-        diff = []
-        for i in range(len(line) - 1):
-            diff.append(line[i + 1] - line[i])
+        diff = [line[i + 1] - line[i] for i in range(len(line) - 1)]
+
         return line[-1] + next_element(diff)
 
 
 if __name__ == "__main__":
-    next_elements = []
-    for line in lines:
-        next_elements.append(next_element(line))
+    next_elements = [next_element(line) for line in lines]
 
     print(sum(next_elements))
